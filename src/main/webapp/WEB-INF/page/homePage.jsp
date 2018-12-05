@@ -6,11 +6,23 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>新闻发布系统</title>
+    <script type="text/javascript">
+        function login(){
+            window.location="/login";
+        }
+        function logout(){
+            window.location="/logout";
+        }
+
+    </script>
 </head>
 
 <body>
 
-<div style="position:absolute;  right:20px ;height:20px; "><a href="/login">登陆</a></div>
+<div style="position:absolute;  right:20px ;height:20px; ">
+    ${userRight}<button onclick="login()" id="loginButton"  style="display:${loginButton}">登陆/注册</button>
+    <button onclick="logout()" id="logoutButton" style="display: ${logoutButton}">退出</button>
+</div>
 
 <div align="center">
     <font size="40">新闻发布系统</font>

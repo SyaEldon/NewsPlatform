@@ -8,4 +8,6 @@ import org.xd.newsplatform.pojo.user;
 @Repository
 public interface UserMapper {
     user getUserByAccount(String account);
+    user getUserByName(String name);
+    int registerAccount(user user);
 }

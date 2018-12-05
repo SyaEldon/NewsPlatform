@@ -4,4 +4,11 @@
     <select id="getUserByAccount" parameterType="String" resultType="org.xd.newsplatform.pojo.user">
         select * from user where account = #{account}
     </select>
+    <select id="getUserByName" parameterType="String" resultType="org.xd.newsplatform.pojo.user">
+        select * from user where name = #{name}
+    </select>
+    <insert id="registerAccount" parameterType="org.xd.newsplatform.pojo.user" >
+        insert into user (name,account,password,userRight) values( #{name,jdbcType=VARCHAR},#{account,jdbcType=VARCHAR},#{password,jdbcType=VARCHAR},
+      #{userRight,jdbcType=INTEGER})
+    </insert>
 </mapper>
