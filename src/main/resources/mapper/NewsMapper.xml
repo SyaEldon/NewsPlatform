@@ -9,6 +9,10 @@
         select * from news where newsId=#{newsId}
     </select>
 
+    <select id="getNewsListByType" resultType="org.xd.newsplatform.pojo.news">
+        select * from news where type=#{type}
+    </select>
+
     <select id="getNewsCount" parameterType="String" resultType="int">
         select viewCount from news where newsId=#{newsId}
     </select>

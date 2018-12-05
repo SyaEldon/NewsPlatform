@@ -23,7 +23,12 @@ public class HomePage {
     HttpSession httpSession;
 
     @GetMapping("/")
-    public ModelAndView homePage(){
+    public String init(){
+        return "redirect:/homepage?type=1";
+    }
+
+    @GetMapping("/homepage")
+    public ModelAndView homePage(news news){
         System.out.println(httpSession.getId());
         user checkUser=new user();
         if(httpSession.getAttribute("user")==null)
@@ -32,21 +37,22 @@ public class HomePage {
             checkUser=(user)httpSession.getAttribute("user");
         }
         int userRight=(int)httpSession.getAttribute("userRight");
-        List<news> newsList=newsService.getNewsList();
+
+        List<news> newsList=newsService.getNewsListByType(news.getType());
         ModelAndView mov=new ModelAndView("homePage");
 
         switch (userRight){
-            case 0: mov.addObject("userRight","游客");
-                    mov.addObject("loginButton","block");
-                    mov.addObject("logoutButton","none");
+            case 0: mov.addObject("userRight","游客")
+                    .addObject("buttonFunction","login()")
+                    .addObject("buttonContent","登陆/注册");
                     break;
-            case 1: mov.addObject("userRight","(注册用户)"+checkUser.getName());
-                    mov.addObject("loginButton","none");
-                    mov.addObject("logoutButton","block");
+            case 1: mov.addObject("userRight","(注册用户)"+checkUser.getName())
+                    .addObject("buttonFunction","logout()")
+                    .addObject("buttonContent","退出");
                     break;
-            case 2: mov.addObject("userRight","(管理员)"+checkUser.getName());
-                    mov.addObject("loginButton","none");
-                    mov.addObject("logoutButton","block");
+            case 2: mov.addObject("userRight","(管理员)"+checkUser.getName())
+                    .addObject("buttonFunction","logout()")
+                    .addObject("buttonContent","退出");
                     break;
         }
 

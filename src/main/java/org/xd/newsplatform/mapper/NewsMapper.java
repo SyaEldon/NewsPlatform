@@ -11,6 +11,7 @@ import java.util.List;
 @Repository
 public interface NewsMapper {
     List<news> getNewsList();
+    List<news> getNewsListByType(int type);
     news getNewsByNewsId(int newsId);
     int getNewsCount(int newsId);
 }

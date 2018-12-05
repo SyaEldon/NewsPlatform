@@ -17,6 +17,11 @@ public class newsService {
         return newsList;
     }
 
+    public List<news> getNewsListByType(int type){
+        List<news> newsList=newsMapper.getNewsListByType(type);
+        return newsList;
+    }
+
     public news getNewsByNewsId(int newsId){
         news news=newsMapper.getNewsByNewsId(newsId);
         return news;
