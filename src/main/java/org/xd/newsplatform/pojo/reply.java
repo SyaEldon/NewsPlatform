@@ -1,17 +1,17 @@
 package org.xd.newsplatform.pojo;
 
 public class reply {
-    private int replyid;
+    private int replyId;
     private String content;
-    private String useraccot;
-    private int newsid;
+    private String userAccount;
+    private int newsId;
 
-    public int getReplyid() {
-        return replyid;
+    public int getReplyId() {
+        return replyId;
     }
 
-    public void setReplyid(int replyid) {
-        this.replyid = replyid;
+    public void setReplyId(int replyId) {
+        this.replyId = replyId;
     }
 
     public String getContent() {
@@ -22,20 +22,20 @@ public class reply {
         this.content = content;
     }
 
-    public String getUseraccot() {
-        return useraccot;
+    public String getUserAccount() {
+        return userAccount;
     }
 
-    public void setUseraccot(String useraccot) {
-        this.useraccot = useraccot;
+    public void setUserAccount(String userAccount) {
+        this.userAccount = userAccount;
     }
 
-    public int getNewsid() {
-        return newsid;
+    public int getNewsId() {
+        return newsId;
     }
 
-    public void setNewsid(int newsid) {
-        this.newsid = newsid;
+    public void setNewsId(int newsId) {
+        this.newsId = newsId;
     }
 
 

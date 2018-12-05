@@ -1,18 +1,18 @@
 package org.xd.newsplatform.pojo;
 
 public class user {
-    private int userid;
+    private int userId;
     private String name;
     private String account;
     private String password;
-    private int userright;
+    private int userRight;
 
-    public int getUserid() {
-        return userid;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setUserid(int userid) {
-        this.userid = userid;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public String getName() {
@@ -39,12 +39,12 @@ public class user {
         this.password = password;
     }
 
-    public int getUserright() {
-        return userright;
+    public int getUserRight() {
+        return userRight;
     }
 
-    public void setUserright(int userright) {
-        this.userright = userright;
+    public void setUserRight(int userRight) {
+        this.userRight = userRight;
     }
 
 

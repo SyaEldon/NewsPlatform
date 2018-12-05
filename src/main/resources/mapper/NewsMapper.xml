@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.xd.newsplatform.mapper.NewsMapper">
+    <select id="getNewsList" resultType="org.xd.newsplatform.pojo.news">
+        select * from news
+    </select>
+
+    <select id="getNewsByNewsId" resultType="org.xd.newsplatform.pojo.news">
+        select * from news where newsId=#{newsId}
+    </select>
+
+    <select id="getNewsCount" parameterType="String" resultType="int">
+        select viewCount from news where newsId=#{newsId}
+    </select>
+
+</mapper>

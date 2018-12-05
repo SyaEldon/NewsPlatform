@@ -1,19 +1,20 @@
 package org.xd.newsplatform.pojo;
 
+
 public class news {
-    private int news;
+    private int newsId;
     private String title;
     private String content;
-    private String useraccount;
-    private int count;
+    private String userAccount;
+    private int viewCount;
     private int visible;
 
-    public int getNews() {
-        return news;
+    public int getNewsId() {
+        return newsId;
     }
 
-    public void setNews(int news) {
-        this.news = news;
+    public void setNewsId(int newsId) {
+        this.newsId = newsId;
     }
 
     public String getTitle() {
@@ -32,20 +33,20 @@ public class news {
         this.content = content;
     }
 
-    public String getUseraccount() {
-        return useraccount;
+    public String getUserAccount() {
+        return userAccount;
     }
 
-    public void setUseraccount(String useraccount) {
-        this.useraccount = useraccount;
+    public void setUserAccount(String userAccount) {
+        this.userAccount = userAccount;
     }
 
-    public int getCount() {
-        return count;
+    public int getViewCount() {
+        return viewCount;
     }
 
-    public void setCount(int count) {
-        this.count = count;
+    public void setViewCount(int viewCount) {
+        this.viewCount = viewCount;
     }
 
     public int getVisible() {
