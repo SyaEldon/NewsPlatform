@@ -30,7 +30,6 @@
             <div style="border:1px solid rgba(38,11,80,0.47);">
                 <p style="width:600px;height:40px;overflow:hidden;text-overflow:ellipsis;">${item.key.content}</p>
             </div>
-
         </div>
     </c:forEach>
 </div>

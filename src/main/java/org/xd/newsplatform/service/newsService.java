@@ -36,7 +36,32 @@ public class newsService {
         newsMapper.insertNews(news);
     }
 
+    public String getTypeName(int type){
+        switch(type){
+            case 1:return "国外";
+            case 2:return "国内";
+            case 3:return "体育";
+            case 4:return "娱乐";
+            case 5:return "旅游";
+            case 6:return "教育";
+        }
+        return "Unkown";
+    }
+
     public String contentReplaca(String content){
         return content.replace(" ","&nbsp").replace("\r\n","<br>");
+    }
+
+    public void deleteNews(int newsId){
+        newsMapper.deleteNews(newsId);
+    }
+
+    public void updateVisible(int newsId){
+        news news=newsMapper.getNewsByNewsId(newsId);
+        newsMapper.updateNewsVisible(news.getVisible()*-1,newsId);
+    }
+
+    public void hideNews(){
+
     }
 }

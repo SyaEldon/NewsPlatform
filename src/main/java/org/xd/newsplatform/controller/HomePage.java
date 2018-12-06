@@ -63,7 +63,7 @@ public class HomePage {
             case 3: mov.addObject("userRight","(管理员)"+checkUser.getName())
                     .addObject("buttonFunction","logout()")
                     .addObject("postNews","<a href=\"/postNewsPage\" id=\"loginButton\" target=\"_blank\" >发布新文章</a>")
-                    .addObject("administrator","<a href=\"/administratorPage\"  target=\"_blank\" >发布新文章</a>")
+                    .addObject("administrator","<a href=\"/administratorPage\"  target=\"_blank\" >管理员页面</a>")
                     .addObject("buttonContent","退出");
                 break;
         }

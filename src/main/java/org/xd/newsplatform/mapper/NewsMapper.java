@@ -21,5 +21,13 @@ public interface NewsMapper {
 
     int updateViewCount(@Param(value = "viewCount") int viewCount,@Param(value = "newsId") int newsId);
 
+    int updateNewsVisible(@Param(value = "visible") int viewCount,@Param(value = "newsId") int newsId);
+
     int insertNews(news news);
+
+    int deleteNews(int newsId);
+
+    int updateNews(news news);
+
+    int hideNews(int newsId);
 }
