@@ -48,10 +48,13 @@ public class newsService {
         return "Unkown";
     }
 
-    public String contentReplaca(String content){
+    public String contentReplace(String content){
         return content.replace(" ","&nbsp").replace("\r\n","<br>");
     }
 
+    public String reContentReplaca(String content){
+        return content.replace("&nbsp"," ").replace("<br>","\r\n");
+    }
     public void deleteNews(int newsId){
         newsMapper.deleteNews(newsId);
     }
@@ -61,7 +64,7 @@ public class newsService {
         newsMapper.updateNewsVisible(news.getVisible()*-1,newsId);
     }
 
-    public void hideNews(){
-
+    public void reviseNews(news news){
+        newsMapper.reviseNews(news);
     }
 }

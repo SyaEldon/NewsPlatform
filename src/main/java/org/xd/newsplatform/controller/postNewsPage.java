@@ -42,7 +42,7 @@ public class postNewsPage {
         news postNews=new news();
 
         postNews.setTitle(newsTitle);
-        postNews.setContent(newsService.contentReplaca(newsContent));
+        postNews.setContent(newsService.contentReplace(newsContent));
         postNews.setType(Integer.valueOf(newsTypeNum));
         postNews.setViewCount(0);
         postNews.setUserAccount(((user)httpSession.getAttribute("user")).getAccount());

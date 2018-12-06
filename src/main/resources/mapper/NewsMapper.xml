@@ -25,6 +25,10 @@
         update news set visible = #{visible} where newsId=#{newsId}
     </update>
 
+    <update id="reviseNews" parameterType="org.xd.newsplatform.pojo.news">
+        update news set title = #{title},content = #{content},type = #{type} where newsId=#{newsId}
+    </update>
+
     <insert id="insertNews" parameterType="org.xd.newsplatform.pojo.news">
         insert into news (title,content,userAccount,viewCount,visible,type)
         values

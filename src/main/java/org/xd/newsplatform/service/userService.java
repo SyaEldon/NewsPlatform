@@ -6,11 +6,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.xd.newsplatform.mapper.UserMapper;
 import org.xd.newsplatform.pojo.user;
 
+import java.util.List;
+
 
 @Service
 public class userService {
     @Autowired
     UserMapper userMapper;
+
+    public List<user> getUserList(){
+        List<user> userList=userMapper.getUserList();
+        return userList;
+    }
 
     public int registerAccount(user user) {
         user userAccountCheck = userMapper.getUserByAccount(user.getAccount());
@@ -41,5 +48,23 @@ public class userService {
     public user getUser(String account){
         user user=userMapper.getUserByAccount(account);
         return user;
+    }
+
+    public String getUserRightName(int userRight){
+        switch(userRight){
+            case 0:return "游客";
+            case 1:return "注册用户";
+            case 2:return "新闻发布员";
+            case 3:return "管理员";
+        }
+        return "Unkown";
+    }
+
+    public void deleteUser(int userId){
+        userMapper.deleteUser(userId);
+    }
+
+    public void updateUserRight(int userRight,int userId){
+        userMapper.updateUserRight(userRight,userId);
     }
 }

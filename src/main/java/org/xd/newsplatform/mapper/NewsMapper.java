@@ -27,7 +27,6 @@ public interface NewsMapper {
 
     int deleteNews(int newsId);
 
-    int updateNews(news news);
+    int reviseNews(news news);
 
-    int hideNews(int newsId);
 }

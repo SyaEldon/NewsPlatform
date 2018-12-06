@@ -61,7 +61,9 @@
 <body>
 
 <div style="position:absolute;  right:20px ;height:20px; ">
-    ${administrator}
+    ${administratorReply}
+    ${administratorUser}
+    ${administratorNews}
     ${postNews}
     ${userRight}
     <button onclick="${buttonFunction}" id="loginButton">${buttonContent}</button>

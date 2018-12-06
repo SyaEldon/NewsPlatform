@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="org.xd.newsplatform.mapper.UserMapper">
+    <select id="getUserList" resultType="org.xd.newsplatform.pojo.user">
+        select * from user where userRight!=3
+    </select>
     <select id="getUserByAccount" parameterType="String" resultType="org.xd.newsplatform.pojo.user">
         select * from user where account = #{account}
     </select>
@@ -11,4 +14,10 @@
         insert into user (name,account,password,userRight) values( #{name,jdbcType=VARCHAR},#{account,jdbcType=VARCHAR},#{password,jdbcType=VARCHAR},
       #{userRight,jdbcType=INTEGER})
     </insert>
+    <delete id="deleteUser" parameterType="int">
+        delete from user where userId=#{userId}
+    </delete>
+    <update id="updateUserRight" >
+        update user set userRight = #{userRight} where userId=#{userId}
+    </update>
 </mapper>
