@@ -1,5 +1,12 @@
 package org.xd.newsplatform.pojo;
 
+/**
+ * userRight
+ * 0 游客
+ * 1 注册用户
+ * 2 新闻发布用户
+ * 3 管理员
+ */
 public class user {
     private int userId;
     private String name;

@@ -61,9 +61,10 @@
 <body>
 
 <div style="position:absolute;  right:20px ;height:20px; ">
+    ${administrator}
+    ${postNews}
     ${userRight}
     <button onclick="${buttonFunction}" id="loginButton">${buttonContent}</button>
-
 </div>
 
 <div align="center">
@@ -94,10 +95,10 @@
 <c:forEach items="${list}" var="item">
     <div style="border:1px solid rgba(0,0,0,0.47);">
         <h3>
-            <a href="/page/newsPage?newsId=${item.newsId}">${item.title}</a>
+            <a href="/page/newsPage?newsId=${item.newsId}"  target="_blank">${item.title}</a>
         </h3>
         <p style="width:600px;height:40px;overflow:hidden;text-overflow:ellipsis;">${item.content}</p>
-        <p style="color:  #008000">作者:${item.userAccount}&nbsp&nbsp&nbsp&nbsp浏览次数:${item.viewCount}&nbsp&nbsp&nbsp&nbsp发布时间:${item.gmt_creat} </p>
+        <p style="color:  #008000">作者:${item.userAccount}&nbsp;&nbsp;&nbsp;&nbsp;浏览次数:${item.viewCount}&nbsp;&nbsp;&nbsp;&nbsp;发布时间:${item.gmt_creat} </p>
     </div>
 </c:forEach>
 

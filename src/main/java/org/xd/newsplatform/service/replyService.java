@@ -16,4 +16,12 @@ public class replyService {
         List<reply> replyList=replyMapper.getReplyListByNewsId(newsId);
         return replyList;
     }
+    public int postReply(reply reply){
+        replyMapper.postReply(reply);
+        return 1;
+    }
+
+    public String replyReplaca(String content){
+        return content.replace(" ","&nbsp").replace("\r\n","<br>");
+    }
 }

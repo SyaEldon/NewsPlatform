@@ -23,7 +23,20 @@ public class newsService {
     }
 
     public news getNewsByNewsId(int newsId){
+        System.out.println(newsId);
         news news=newsMapper.getNewsByNewsId(newsId);
         return news;
+    }
+
+    public void updateViewCount(int viewCout,int newsId){
+        newsMapper.updateViewCount(viewCout,newsId);
+    }
+
+    public void insertNews(news news){
+        newsMapper.insertNews(news);
+    }
+
+    public String contentReplaca(String content){
+        return content.replace(" ","&nbsp").replace("\r\n","<br>");
     }
 }

@@ -10,11 +10,22 @@
     </select>
 
     <select id="getNewsListByType" resultType="org.xd.newsplatform.pojo.news">
-        select * from news where type=#{type}
+        select * from news where type=#{type} and visible=1
     </select>
 
     <select id="getNewsCount" parameterType="String" resultType="int">
         select viewCount from news where newsId=#{newsId}
     </select>
+
+    <update id="updateViewCount" >
+        update news set viewCount = #{viewCount} where newsId=#{newsId}
+    </update>
+
+    <insert id="insertNews" parameterType="org.xd.newsplatform.pojo.news">
+        insert into news (title,content,userAccount,viewCount,visible,type)
+        values
+        (#{title,jdbcType=VARCHAR},#{content,jdbcType=LONGVARCHAR},#{userAccount,jdbcType=VARCHAR},
+      #{viewCount,jdbcType=INTEGER},#{visible,jdbcType=INTEGER},#{type,jdbcType=INTEGER})
+    </insert>
 
 </mapper>

@@ -3,15 +3,23 @@ package org.xd.newsplatform.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.xd.newsplatform.pojo.news;
 import org.xd.newsplatform.pojo.reply;
+import org.xd.newsplatform.pojo.user;
 import org.xd.newsplatform.service.newsService;
 import org.xd.newsplatform.service.replyService;
+import org.xd.newsplatform.service.userService;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.constraints.Max;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class newsPage {
@@ -22,16 +30,52 @@ public class newsPage {
     replyService replyService;
 
     @Autowired
+    userService userService;
+
+    @Autowired
     HttpSession httpSession;
 
     @GetMapping("/page/newsPage")
     public ModelAndView newsPage(news news){
         news viewNews=newsService.getNewsByNewsId(news.getNewsId());
+        viewNews.setViewCount(viewNews.getViewCount()+1);
+        newsService.updateViewCount(viewNews.getViewCount(),viewNews.getNewsId());
         ModelAndView mov=new ModelAndView("newsPage");
         mov.addObject("title",viewNews.getTitle());
         mov.addObject("content",viewNews.getContent());
+        user newsPostUser=userService.getUser(viewNews.getUserAccount());
+        mov.addObject("newsUser",newsPostUser.getName());
+        mov.addObject("newsTime",viewNews.getGmt_creat());
+        mov.addObject("viewCount",viewNews.getViewCount());
         List<reply> replyList=replyService.getReplyListByNewsId(news.getNewsId());
-        mov.addObject("list",replyList);
+        Map<reply,user> replyAndUserMap=new HashMap<>();
+        if(replyList!=null){
+            for (reply singleReply:replyList) {
+                user replyUser=userService.getUser(singleReply.getUserAccount());
+                replyAndUserMap.put(singleReply,replyUser);
+            }
+            mov.addObject("list",replyAndUserMap);
+        }
+
         return mov;
     }
+
+    @PostMapping("/postReply")
+    public String replyPost(@RequestParam("replyContent")String replyContent,
+                            @RequestParam("newsId")String newsId){
+        if((int)httpSession.getAttribute("userRight")==0){
+            return "redirect:/login";
+        }
+        else {
+            reply postReply=new reply();
+            postReply.setContent(replyService.replyReplaca(replyContent));
+            postReply.setNewsId(Integer.valueOf(newsId));
+            postReply.setUserAccount(((user) httpSession.getAttribute("user")).getAccount());
+            replyService.postReply(postReply);
+            return "redirect:/page/newsPage?newsId="+newsId;
+        }
+
+    }
+
+
 }

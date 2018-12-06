@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="org.xd.newsplatform.pojo.reply">
+<mapper namespace="org.xd.newsplatform.mapper.ReplyMapper">
+
     <select id="getReplyListByNewsId" parameterType="int" resultType="org.xd.newsplatform.pojo.reply">
-        select * from reply where newsId=#{newsId}
+        select * from reply where newsId=#{newsId} order by replyId
     </select>
 
     <insert id="postReply" parameterType="org.xd.newsplatform.pojo.reply" >
-        insert into user (replyId,content,userAccount,newsId) values( #{replyId,jdbcType=INTEGER},#{content,jdbcType=VARCHAR},#{userAccount,jdbcType=VARCHAR},
+        insert into reply (content,userAccount,newsId) values( #{content,jdbcType=VARCHAR},#{userAccount,jdbcType=VARCHAR},
       #{newsId,jdbcType=INTEGER})
     </insert>
 
