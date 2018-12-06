@@ -27,6 +27,13 @@
     <c:forEach items="${list}" var="item">
         <div style="border:1px solid rgba(10,65,80,0.47);">
                 <p style="color:  #008000 ;font-size: 12px" >回复用户:${item.value.name}&nbsp;&nbsp;&nbsp;&nbsp;发布时间:${item.key.gmt_creat}</p>
+            <form id="replyDelete_form" method="post" action="/deleteReply">
+                <input type="hidden" name="replyId" value="${item.key.replyId}" />
+                <input  type="hidden" name="deleteReplyNewsId" value="${item.key.newsId} "/>
+                    ${delete}
+            </form>
+
+
             <div style="border:1px solid rgba(38,11,80,0.47);">
                 <p style="width:600px;height:40px;overflow:hidden;text-overflow:ellipsis;">${item.key.content}</p>
             </div>
@@ -38,7 +45,7 @@
         <label><strong>reply</strong></label><br>
         <textarea name="replyContent" style="resize: none" cols="100" rows="10"></textarea>
         <input type="submit" value="reply" name="replySubmit"/>
-        <input id="newsId" type="hidden" name="newsId" style="display: none" /></br>
+        <input id="newsId" type="hidden" name="newsId"  /></br>
     </form>
 </div>
 </body>

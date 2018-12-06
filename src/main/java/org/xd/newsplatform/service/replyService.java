@@ -24,4 +24,12 @@ public class replyService {
     public String replyReplaca(String content){
         return content.replace(" ","&nbsp").replace("\r\n","<br>");
     }
+
+    public void deleteReplyByUser(String userAccount){
+        replyMapper.deleteReplyByUser(userAccount);
+    }
+
+    public void deleteReplyByReplyId(int replyId){
+        replyMapper.deleteReplyByReplyId(replyId);
+    }
 }

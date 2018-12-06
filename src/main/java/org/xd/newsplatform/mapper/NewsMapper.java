@@ -29,4 +29,6 @@ public interface NewsMapper {
 
     int reviseNews(news news);
 
+    int deleteNewsByUser(String userAccount);
+
 }

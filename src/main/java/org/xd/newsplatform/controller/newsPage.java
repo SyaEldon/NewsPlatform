@@ -9,14 +9,10 @@ import org.springframework.web.servlet.ModelAndView;
 import org.xd.newsplatform.pojo.news;
 import org.xd.newsplatform.pojo.reply;
 import org.xd.newsplatform.pojo.user;
-import org.xd.newsplatform.service.newsService;
 import org.xd.newsplatform.service.replyService;
 import org.xd.newsplatform.service.userService;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.validation.constraints.Max;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -40,13 +36,22 @@ public class newsPage {
         news viewNews=newsService.getNewsByNewsId(news.getNewsId());
         viewNews.setViewCount(viewNews.getViewCount()+1);
         newsService.updateViewCount(viewNews.getViewCount(),viewNews.getNewsId());
-        ModelAndView mov=new ModelAndView("newsPage");
-        mov.addObject("title",viewNews.getTitle());
-        mov.addObject("content",viewNews.getContent());
         user newsPostUser=userService.getUser(viewNews.getUserAccount());
-        mov.addObject("newsUser",newsPostUser.getName());
-        mov.addObject("newsTime",viewNews.getGmt_creat());
-        mov.addObject("viewCount",viewNews.getViewCount());
+        ModelAndView mov=new ModelAndView("newsPage");
+        mov.addObject("title",viewNews.getTitle())
+                .addObject("content",viewNews.getContent())
+                .addObject("newsUser",newsPostUser.getName())
+                .addObject("newsTime",viewNews.getGmt_creat())
+                .addObject("viewCount",viewNews.getViewCount());
+        if((int)httpSession.getAttribute("userRight")==3){
+            mov.addObject("delete",
+                    "<button onclick=\"document.getElementById('replyDelete_form').submit();\">删除</button>\n");
+        }
+        else {
+            mov.addObject("delete","");
+        }
+
+
         List<reply> replyList=replyService.getReplyListByNewsId(news.getNewsId());
         Map<reply,user> replyAndUserMap=new HashMap<>();
         if(replyList!=null){
@@ -74,6 +79,13 @@ public class newsPage {
             replyService.postReply(postReply);
             return "redirect:/page/newsPage?newsId="+newsId;
         }
+    }
+
+    @PostMapping("/deleteReply")
+    public String deletePost(@RequestParam("replyId")String replyId,
+                             @RequestParam("deleteReplyNewsId")String deleteReplyNewsId){
+        replyService.deleteReplyByReplyId(Integer.valueOf(replyId));
+        return "redirect:/page/newsPage?newsId="+deleteReplyNewsId;
 
     }
 

@@ -2,7 +2,6 @@ package org.xd.newsplatform.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.xd.newsplatform.mapper.UserMapper;
 import org.xd.newsplatform.pojo.user;
 

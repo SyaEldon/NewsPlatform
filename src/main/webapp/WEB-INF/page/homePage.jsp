@@ -61,7 +61,6 @@
 <body>
 
 <div style="position:absolute;  right:20px ;height:20px; ">
-    ${administratorReply}
     ${administratorUser}
     ${administratorNews}
     ${postNews}

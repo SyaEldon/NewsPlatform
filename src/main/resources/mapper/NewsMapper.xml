@@ -40,4 +40,8 @@
         delete from news where newsId=#{newsId}
     </delete>
 
+    <delete id="deleteNewsByUser" >
+        delete from news where userAccount=#{userAccount}
+    </delete>
+
 </mapper>

@@ -11,4 +11,12 @@
       #{newsId,jdbcType=INTEGER})
     </insert>
 
+    <delete id="deleteReplyByUser" >
+        delete from reply where userAccount=#{userAccount}
+    </delete>
+
+    <delete id="deleteReplyByReplyId" parameterType="int">
+        delete from reply where replyId=#{replyId}
+    </delete>
+
 </mapper>

@@ -3,13 +3,11 @@ package org.xd.newsplatform.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.xd.newsplatform.pojo.news;
 import org.xd.newsplatform.pojo.user;
 import org.xd.newsplatform.service.newsService;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -29,7 +27,6 @@ public class HomePage {
 
     @GetMapping("/homepage")
     public ModelAndView homePage(news news){
-        System.out.println(httpSession.getId());
         user checkUser=new user();
         if(httpSession.getAttribute("user")==null)
             httpSession.setAttribute("userRight",0);
@@ -47,7 +44,6 @@ public class HomePage {
                     .addObject("postNews","")
                     .addObject("administratorNews","")
                     .addObject("administratorUser","")
-                    .addObject("administratorReply","")
                     .addObject("buttonContent","登陆/注册");
                     break;
             case 1: mov.addObject("userRight","(注册用户)"+checkUser.getName())
@@ -55,7 +51,6 @@ public class HomePage {
                     .addObject("postNews","")
                     .addObject("administratorNews","")
                     .addObject("administratorUser","")
-                    .addObject("administratorReply","")
                     .addObject("buttonContent","退出");
                     break;
             case 2: mov.addObject("userRight","(新闻发布员)"+checkUser.getName())
@@ -63,7 +58,6 @@ public class HomePage {
                     .addObject("postNews","<a href=\"/postNewsPage\"  target=\"_blank\" >发布新文章</a>")
                     .addObject("administratorNews","")
                     .addObject("administratorUser","")
-                    .addObject("administratorReply","")
                     .addObject("buttonContent","退出");
                     break;
             case 3: mov.addObject("userRight","(管理员)"+checkUser.getName())
@@ -71,7 +65,6 @@ public class HomePage {
                     .addObject("postNews","<a href=\"/postNewsPage\" id=\"loginButton\" target=\"_blank\" >发布新文章</a>")
                     .addObject("administratorNews","<a href=\"/administratorNewsPage\"  target=\"_blank\" >新闻管理</a>")
                     .addObject("administratorUser","<a href=\"/administratorUserPage\"  target=\"_blank\" >用户管理</a>")
-                    .addObject("administratorReply","<a href=\"/administratorUserPage\"  target=\"_blank\" >回复管理</a>")
                     .addObject("buttonContent","退出");
                 break;
         }

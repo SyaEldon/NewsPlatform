@@ -23,7 +23,6 @@ public class newsService {
     }
 
     public news getNewsByNewsId(int newsId){
-        System.out.println(newsId);
         news news=newsMapper.getNewsByNewsId(newsId);
         return news;
     }
@@ -66,5 +65,9 @@ public class newsService {
 
     public void reviseNews(news news){
         newsMapper.reviseNews(news);
+    }
+
+    public void deleteNewsByUser(String userAccount){
+        newsMapper.deleteNewsByUser(userAccount);
     }
 }

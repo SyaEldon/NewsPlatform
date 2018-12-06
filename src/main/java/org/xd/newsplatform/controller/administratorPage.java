@@ -9,6 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.xd.newsplatform.pojo.news;
 import org.xd.newsplatform.pojo.user;
 import org.xd.newsplatform.service.newsService;
+import org.xd.newsplatform.service.replyService;
 import org.xd.newsplatform.service.userService;
 
 import javax.servlet.http.HttpSession;
@@ -26,6 +27,9 @@ public class administratorPage {
 
     @Autowired
     userService userService;
+
+    @Autowired
+    replyService replyService;
 
     @GetMapping("/administratorNewsPage")
     public ModelAndView administratorNewsPage(){
@@ -117,9 +121,12 @@ public class administratorPage {
 
     @PostMapping("/administratorUserPage/updateUserRight")
     public String updateUserRight(@RequestParam("userId")int userId,
+                                  @RequestParam("userAccount")String userAccount,
                                   @RequestParam("userRight")int userRight){
         if(userRight==0){
             userService.deleteUser(userId);
+            replyService.deleteReplyByUser(userAccount);
+            newsService.deleteNewsByUser(userAccount);
             return "redirect:/administratorUserPage";
         }
         else {

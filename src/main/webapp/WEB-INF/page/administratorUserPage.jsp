@@ -1,17 +1,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: x8132
-  Date: 2018/12/6
-  Time: 21:00
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>用户管理界面</title>
 </head>
 <body>
+<h1><strong>你好,（管理员）${userName}</strong></h1>
+<hr>
 <table border="1px">
     <tr>
         <td>用户Id</td>
@@ -29,6 +24,7 @@
             <td>
                 <form id="updateUserRight_form" method="post" action="/administratorUserPage/updateUserRight">
                     <input type="hidden" name="userId" value="${item.key.userId}" />
+                    <input type="hidden" name="userAccount" value="${item.key.account}" />
                     <select name="userRight">
                         <option value ="0">删除用户</option>
                         <option value ="1">更改为注册用户</option>

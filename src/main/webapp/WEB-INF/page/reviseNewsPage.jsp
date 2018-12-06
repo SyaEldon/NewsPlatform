@@ -6,7 +6,7 @@
 </head>
 <body>
 <div>
-    <form action="/administratorPage/reviseNews" method="post">
+    <form action="/administratorNewsPage/reviseNews" method="post">
         <label><strong>正在修改:${title}</strong></label><br>
         <label>位于:${type}区</label>
         <hr>

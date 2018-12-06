@@ -10,5 +10,10 @@ import java.util.List;
 @Repository
 public interface ReplyMapper {
     List<reply> getReplyListByNewsId(int newsId);
+
     int postReply(reply reply);
+
+    int deleteReplyByUser(String userAccount);
+
+    int deleteReplyByReplyId(int replyId);
 }
