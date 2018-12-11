@@ -14,6 +14,7 @@ import org.xd.newsplatform.service.userService;
 
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -33,27 +34,19 @@ public class newsPage {
 
     @GetMapping("/page/newsPage")
     public ModelAndView newsPage(news news){
+        user viewUser=(user)httpSession.getAttribute("user");
         news viewNews=newsService.getNewsByNewsId(news.getNewsId());
         viewNews.setViewCount(viewNews.getViewCount()+1);
         newsService.updateViewCount(viewNews.getViewCount(),viewNews.getNewsId());
         user newsPostUser=userService.getUser(viewNews.getUserAccount());
         ModelAndView mov=new ModelAndView("newsPage");
-        mov.addObject("title",viewNews.getTitle())
-                .addObject("content",viewNews.getContent())
+        mov.addObject("viewNews",viewNews)
                 .addObject("newsUser",newsPostUser.getName())
-                .addObject("newsTime",viewNews.getGmt_creat())
-                .addObject("viewCount",viewNews.getViewCount());
-        if((int)httpSession.getAttribute("userRight")==3){
-            mov.addObject("delete",
-                    "<button onclick=\"document.getElementById('replyDelete_form').submit();\">删除</button>\n");
-        }
-        else {
-            mov.addObject("delete","");
-        }
+                .addObject("viewUser", viewUser);
 
 
         List<reply> replyList=replyService.getReplyListByNewsId(news.getNewsId());
-        Map<reply,user> replyAndUserMap=new HashMap<>();
+        Map<reply,user> replyAndUserMap=new LinkedHashMap<>();
         if(replyList!=null){
             for (reply singleReply:replyList) {
                 user replyUser=userService.getUser(singleReply.getUserAccount());

@@ -12,6 +12,8 @@ import org.xd.newsplatform.service.userService;
 
 import javax.servlet.http.HttpSession;
 /**
+ *
+ * registerStatus包在httpSession里用来传递注册状态
  * check用来判断注册是否成功，以及失败的愿因
  * 1 成功
  * 2 账号已存在

@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-    <title>${title}</title>
+    <title>${viewNews.title}</title>
     <script type="text/javascript">
         window.onload=function () {
             var newsId=window.location.search.substring(8);
@@ -13,13 +13,13 @@
 </head>
 <body>
 <div align="center">
-    <font size="40">${title}</font>
+    <font size="40">${viewNews.title}</font>
 </div>
 <div style="border:3px solid rgba(0,0,0,0.7);">
-    ${content}
+    ${viewNews.content}
         <br>
-        <p align="center" style="color:  #008000 ;font-size: 12px" >作者:${newsUser}&nbsp;&nbsp;&nbsp;&nbsp;发布时间:${newsTime}</p>
-        <p align="center" style="color:  #008000 ;font-size: 12px" >浏览次数:${viewCount}</p>
+        <p align="center" style="color:  #008000 ;font-size: 12px" >作者:${newsUser}&nbsp;&nbsp;&nbsp;&nbsp;发布时间:${viewNews.gmt_creat}</p>
+        <p align="center" style="color:  #008000 ;font-size: 12px" >浏览次数:${viewNews.viewCount}</p>
 </div>
 
 <br><br><br><hr>
@@ -30,12 +30,16 @@
             <form id="replyDelete_form" method="post" action="/deleteReply">
                 <input type="hidden" name="replyId" value="${item.key.replyId}" />
                 <input  type="hidden" name="deleteReplyNewsId" value="${item.key.newsId} "/>
-                    ${delete}
+                 <c:choose>
+                     <c:when test="${viewUser.userRight==3}">
+                         <button onclick="document.getElementById('replyDelete_form').submit();">删除</button>
+                     </c:when>
+                 </c:choose>
             </form>
 
 
             <div style="border:1px solid rgba(38,11,80,0.47);">
-                <p style="width:600px;height:40px;overflow:hidden;text-overflow:ellipsis;">${item.key.content}</p>
+                <p >${item.key.content}</p>
             </div>
         </div>
     </c:forEach>

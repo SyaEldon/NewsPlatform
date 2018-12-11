@@ -59,28 +59,24 @@ public class LoginPage {
 
     @GetMapping("/login")
     public ModelAndView Login(){
+
+        ModelAndView mov=new ModelAndView("loginPage");
         if(httpSession.getAttribute("loginError")==null){
             if(httpSession.getAttribute("registerStatus")!=null){
-                ModelAndView mov=new ModelAndView("loginPage");
                 mov.addObject("check","注册成功请登录");
                 httpSession.removeAttribute("registerStatus");
-                return mov;
             }
             else {
-                ModelAndView mov=new ModelAndView("loginPage");
                 mov.addObject("check","请登陆");
-                return mov;
             }
         }
         else if((int)httpSession.getAttribute("loginError")==0){
-            ModelAndView mov=new ModelAndView("loginPage");
             mov.addObject("check","账号不存在，请重试");
-            return mov;
         }
         else {
-            ModelAndView mov=new ModelAndView("loginPage");
             mov.addObject("check","密码不正确，请重试");
-            return mov;
         }
+
+        return mov;
     }
 }

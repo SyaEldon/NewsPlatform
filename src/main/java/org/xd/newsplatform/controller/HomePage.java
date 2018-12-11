@@ -33,42 +33,10 @@ public class HomePage {
         else {
             checkUser=(user)httpSession.getAttribute("user");
         }
-        int userRight=(int)httpSession.getAttribute("userRight");
 
         List<news> newsList=newsService.getNewsListByType(news.getType());
         ModelAndView mov=new ModelAndView("homePage");
-
-        switch (userRight){
-            case 0: mov.addObject("userRight","游客")
-                    .addObject("buttonFunction","login()")
-                    .addObject("postNews","")
-                    .addObject("administratorNews","")
-                    .addObject("administratorUser","")
-                    .addObject("buttonContent","登陆/注册");
-                    break;
-            case 1: mov.addObject("userRight","(注册用户)"+checkUser.getName())
-                    .addObject("buttonFunction","logout()")
-                    .addObject("postNews","")
-                    .addObject("administratorNews","")
-                    .addObject("administratorUser","")
-                    .addObject("buttonContent","退出");
-                    break;
-            case 2: mov.addObject("userRight","(新闻发布员)"+checkUser.getName())
-                    .addObject("buttonFunction","logout()")
-                    .addObject("postNews","<a href=\"/postNewsPage\"  target=\"_blank\" >发布新文章</a>")
-                    .addObject("administratorNews","")
-                    .addObject("administratorUser","")
-                    .addObject("buttonContent","退出");
-                    break;
-            case 3: mov.addObject("userRight","(管理员)"+checkUser.getName())
-                    .addObject("buttonFunction","logout()")
-                    .addObject("postNews","<a href=\"/postNewsPage\" id=\"loginButton\" target=\"_blank\" >发布新文章</a>")
-                    .addObject("administratorNews","<a href=\"/administratorNewsPage\"  target=\"_blank\" >新闻管理</a>")
-                    .addObject("administratorUser","<a href=\"/administratorUserPage\"  target=\"_blank\" >用户管理</a>")
-                    .addObject("buttonContent","退出");
-                break;
-        }
-
+        mov.addObject("user",checkUser);
         mov.addObject("list",newsList);
         return mov;
     }

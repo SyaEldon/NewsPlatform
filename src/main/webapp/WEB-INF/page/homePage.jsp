@@ -61,11 +61,28 @@
 <body>
 
 <div style="position:absolute;  right:20px ;height:20px; ">
-    ${administratorUser}
-    ${administratorNews}
-    ${postNews}
-    ${userRight}
-    <button onclick="${buttonFunction}" id="loginButton">${buttonContent}</button>
+    <c:choose>
+        <c:when test="${user.userRight==0}">
+            (游客)${user.name}
+            <button onclick="login()" id="loginButton">登陆</button>
+        </c:when>
+        <c:when test="${user.userRight==1}">
+            (注册用户)${user.name}
+            <button onclick="logout()" id="loginButton">退出</button>
+        </c:when>
+        <c:when test="${user.userRight==2}">
+            <a href="/postNewsPage" id="loginButton" target="_blank" >发布新文章</a>
+            (新闻发布员)${user.name}
+            <button onclick="logout()" id="loginButton">退出</button>
+        </c:when>
+        <c:when test="${user.userRight==3}">
+            <a href="/administratorNewsPage"  target="_blank" >新闻管理</a>
+            <a href="/administratorUserPage"  target="_blank" >用户管理</a>
+            <a href="/postNewsPage" id="loginButton" target="_blank" >发布新文章</a>
+            (管理员)${user.name}
+            <button onclick="logout()" id="loginButton">退出</button>
+        </c:when>
+    </c:choose>
 </div>
 
 <div align="center">

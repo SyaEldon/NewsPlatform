@@ -10,7 +10,7 @@
         <label><strong>正在修改:${title}</strong></label><br>
         <label>位于:${type}区</label>
         <hr>
-        新闻标题：<input id="newsTitle" type="text"  name="newsTitle" />&nbsp;<select name="newsTypeNum">
+        新闻标题：<input id="newsTitle" type="text"  name="newsTitle" value="${title}"/>&nbsp;<select name="newsTypeNum">
         <option value ="1">国外</option>
         <option value ="2">国内</option>
         <option value="3">体育</option>
