@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-public class administratorPage {
+public class AdministratorPageController {
     @Autowired
     HttpSession httpSession;
 

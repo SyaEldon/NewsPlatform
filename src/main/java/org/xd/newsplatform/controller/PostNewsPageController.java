@@ -13,7 +13,7 @@ import org.xd.newsplatform.service.newsService;
 import javax.servlet.http.HttpSession;
 
 @Controller
-public class postNewsPage {
+public class PostNewsPageController {
 
     @Autowired
     HttpSession httpSession;

@@ -1,21 +1,16 @@
 package org.xd.newsplatform.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import org.xd.newsplatform.pojo.news;
 import org.xd.newsplatform.pojo.user;
 import org.xd.newsplatform.service.newsService;
 import org.xd.newsplatform.service.userService;
 
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.List;
 
 /**
  * check用来判断登陆状态
@@ -23,7 +18,7 @@ import java.util.List;
  */
 
 @Controller
-public class LoginPage {
+public class LoginPageController {
     @Autowired
     userService userService;
     @Autowired

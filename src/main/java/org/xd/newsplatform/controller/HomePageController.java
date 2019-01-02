@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
-public class HomePage {
+public class HomePageController {
 
     @Autowired
     newsService newsService;

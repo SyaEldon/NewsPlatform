@@ -22,7 +22,7 @@ import javax.servlet.http.HttpSession;
  */
 
 @Controller
-public class RegisterPage {
+public class RegisterPageController {
     @Autowired
     userService userService;
     @Autowired
