@@ -16,4 +16,6 @@ public interface ReplyMapper {
     int deleteReplyByUser(String userAccount);
 
     int deleteReplyByReplyId(int replyId);
+
+    int userReplyCount(String userAccount);
 }

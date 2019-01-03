@@ -70,4 +70,8 @@ public class newsService {
     public void deleteNewsByUser(String userAccount){
         newsMapper.deleteNewsByUser(userAccount);
     }
+
+    public int getUserNewsCount(String userAccount){
+        return newsMapper.userNewsCount(userAccount);
+    }
 }

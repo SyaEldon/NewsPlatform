@@ -44,4 +44,7 @@
         delete from news where userAccount=#{userAccount}
     </delete>
 
+    <select id="userNewsCount" parameterType="String" resultType="int">
+        select count(*) from news where userAccount=#{userAccount}
+    </select>
 </mapper>

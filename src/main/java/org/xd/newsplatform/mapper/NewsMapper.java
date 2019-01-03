@@ -31,4 +31,6 @@ public interface NewsMapper {
 
     int deleteNewsByUser(String userAccount);
 
+    int userNewsCount(String userAccount);
+
 }

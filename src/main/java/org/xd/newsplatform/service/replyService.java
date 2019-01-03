@@ -32,4 +32,8 @@ public class replyService {
     public void deleteReplyByReplyId(int replyId){
         replyMapper.deleteReplyByReplyId(replyId);
     }
+
+    public int getReplyCount(String userAccount){
+        return replyMapper.userReplyCount(userAccount);
+    }
 }

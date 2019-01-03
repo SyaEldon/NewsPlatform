@@ -28,8 +28,9 @@ public class HomePageController {
     @GetMapping("/homepage")
     public ModelAndView homePage(news news){
         user checkUser=new user();
-        if(httpSession.getAttribute("user")==null)
+        if(httpSession.getAttribute("user")==null){
             httpSession.setAttribute("userRight",0);
+        }
         else {
             checkUser=(user)httpSession.getAttribute("user");
         }
