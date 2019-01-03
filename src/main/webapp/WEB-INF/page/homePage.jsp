@@ -91,26 +91,26 @@
 <div align="center" class="menu" id="channel" style="height: 31.6px ;width: 100%" >
     <ul>
         <li>
-            <a href="/homepage?type=1">国外</a>
+            <a href="/homepage?type=1&pageNum=1">国外</a>
         </li>
         <li>
-            <a href="/homepage?type=2">国内</a>
+            <a href="/homepage?type=2&pageNum=1">国内</a>
         </li>
         <li>
-            <a href="/homepage?type=3">体育</a>
+            <a href="/homepage?type=3&pageNum=1">体育</a>
         </li>
         <li>
-            <a href="/homepage?type=4">娱乐</a>
+            <a href="/homepage?type=4&pageNum=1">娱乐</a>
         </li>
         <li>
-            <a href="/homepage?type=5">旅游</a>
+            <a href="/homepage?type=5&pageNum=1">旅游</a>
         </li>
         <li>
-            <a href="/homepage?type=6">教育</a>
+            <a href="/homepage?type=6&pageNum=1">教育</a>
         </li>
     </ul>
 </div>
-<c:forEach items="${list}" var="item">
+<c:forEach items="${page.list}" var="item">
     <div style="border:1px solid rgba(0,0,0,0.47);">
         <h3>
             <a href="/page/newsPage?newsId=${item.newsId}"  target="_blank">${item.title}</a>
@@ -120,5 +120,66 @@
     </div>
 </c:forEach>
 
+
+<%-- 构建分页导航 --%>
+共有${page.totalRecord}个新闻，共${page.totalPage }页，当前为${page.pageNum}页
+<br/>
+<a href="/homepage?type=${type}&pageNum=1">首页</a>
+
+
+<%--如果只有一页 --%>
+<c:if test="${page.totalPage ==1}">
+    <c:forEach begin="${page.start}" end="${page.end}" step="1" var="i">
+        <c:if test="${page.pageNum == i}">
+            ${i}
+        </c:if>
+        <c:if test="${page.pageNum != i}">
+            <a href="/homepage?type=${type}&pageNum=${i}">${i}</a>
+        </c:if>
+    </c:forEach>
+</c:if>
+
+
+<%--如果当前页为第一页时，就没有上一页这个超链接显示 --%>
+<c:if test="${page.pageNum ==1&&page.totalPage>1}">
+    <c:forEach begin="${page.start}" end="${page.end}" step="1" var="i">
+        <c:if test="${page.pageNum == i}">
+            ${i}
+        </c:if>
+        <c:if test="${page.pageNum != i}">
+            <a href="/homepage?type=${type}&pageNum=${i}">${i}</a>
+        </c:if>
+    </c:forEach>
+    <a href="/homepage?type=${type}&pageNum=${page.pageNum+1}">下一页</a>
+</c:if>
+
+<%--如果当前页不是第一页也不是最后一页，则有上一页和下一页这个超链接显示 --%>
+<c:if test="${page.pageNum > 1 && page.pageNum < page.totalPage}">
+    <a href="/homepage?type=${type}&pageNum=${page.pageNum-1}">上一页</a>
+    <c:forEach begin="${page.start}" end="${page.end}" step="1" var="i">
+        <c:if test="${page.pageNum == i}">
+            ${i}
+        </c:if>
+        <c:if test="${page.pageNum != i}">
+            <a href="/homepage?type=${type}&pageNum=${i}">${i}</a>
+        </c:if>
+    </c:forEach>
+    <a href="/homepage?type=${type}&pageNum=${page.pageNum+1}">下一页</a>
+</c:if>
+
+<%-- 如果当前页是最后一页，则只有上一页这个超链接显示，下一页没有 --%>
+<c:if test="${page.pageNum == page.totalPage && page.pageNum!=1}">
+    <a href="/homepage?type=${type}&pageNum=${page.pageNum-1}">上一页</a>
+    <c:forEach begin="${page.start}" end="${page.end}" step="1" var="i">
+        <c:if test="${page.pageNum == i}">
+            ${i}
+        </c:if>
+        <c:if test="${page.pageNum != i}">
+            <a href="/homepage?type=${type}&pageNum=${i}">${i}</a>
+        </c:if>
+    </c:forEach>
+</c:if>
+<%--尾页 --%>
+<a href="/homepage?type=${type}&pageNum=${page.totalPage}">尾页</a>
 </body>
 </html>
