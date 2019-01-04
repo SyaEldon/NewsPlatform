@@ -67,19 +67,19 @@
             <button onclick="login()" id="loginButton">登陆</button>
         </c:when>
         <c:when test="${user.userRight==1}">
-            (注册用户)<a href="/userpage">${user.name}</a>
+            (注册用户)<a href="/userpage" target="_blank">${user.name}</a>
             <button onclick="logout()" id="loginButton">退出</button>
         </c:when>
         <c:when test="${user.userRight==2}">
             <a href="/postNewsPage" id="loginButton" target="_blank" >发布新文章</a>
-            (新闻发布员)<a href="/userpage">${user.name}</a>
+            (新闻发布员)<a href="/userpage" target="_blank">${user.name}</a>
             <button onclick="logout()" id="loginButton">退出</button>
         </c:when>
         <c:when test="${user.userRight==3}">
             <a href="/administratorNewsPage"  target="_blank" >新闻管理</a>
             <a href="/administratorUserPage"  target="_blank" >用户管理</a>
             <a href="/postNewsPage" id="loginButton" target="_blank" >发布新文章</a>
-            (管理员)<a href="/userpage">${user.name}</a>
+            (管理员)<a href="/userpage" target="_blank">${user.name}</a>
             <button onclick="logout()" id="loginButton">退出</button>
         </c:when>
     </c:choose>

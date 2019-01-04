@@ -13,6 +13,8 @@
 </head>
 <body>
 用户姓名：${user.name}<br>
+邮箱：${user.email} <br>
+手机号：${user.telephone}<br>
 用户权限：<c:choose>
             <c:when test="${user.userRight==1}">
                 (注册用户)
