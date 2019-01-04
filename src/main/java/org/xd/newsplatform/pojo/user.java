@@ -13,6 +13,9 @@ public class user {
     private String account;
     private String password;
     private int userRight;
+    private String email;
+    private String idCard;
+    private String telephone;
 
     public int getUserId() {
         return userId;
@@ -54,6 +57,27 @@ public class user {
         this.userRight = userRight;
     }
 
+    public String getEmail() {
+        return email;
+    }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
+    public String getIdCard() {
+        return idCard;
+    }
+
+    public void setIdCard(String idCard) {
+        this.idCard = idCard;
+    }
+
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
+    }
 }

@@ -10,9 +10,22 @@
     <select id="getUserByName" parameterType="String" resultType="org.xd.newsplatform.pojo.user">
         select * from user where name = #{name}
     </select>
+    <select id="getUserByEmail" parameterType="String" resultType="org.xd.newsplatform.pojo.user">
+        select * from user where email = #{email}
+    </select>
+    <select id="getUserByIdCard" parameterType="String" resultType="org.xd.newsplatform.pojo.user">
+        select * from user where idCard = #{idCard}
+    </select>
+    <select id="getUserByTelephone" parameterType="String" resultType="org.xd.newsplatform.pojo.user">
+        select * from user where telephone = #{telephone}
+    </select>
     <insert id="registerAccount" parameterType="org.xd.newsplatform.pojo.user" >
-        insert into user (name,account,password,userRight) values( #{name,jdbcType=VARCHAR},#{account,jdbcType=VARCHAR},#{password,jdbcType=VARCHAR},
-      #{userRight,jdbcType=INTEGER})
+        insert into user (
+        name,account,password,userRight,email,idCard,telephone)
+        values(
+        #{name,jdbcType=VARCHAR},#{account,jdbcType=VARCHAR},#{password,jdbcType=VARCHAR},
+        #{userRight,jdbcType=INTEGER},#{email,jdbcType=VARCHAR},#{idCard,jdbcType=VARCHAR},#{telephone,jdbcType=VARCHAR}
+        )
     </insert>
     <delete id="deleteUser" parameterType="int">
         delete from user where userId=#{userId}

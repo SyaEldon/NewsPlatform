@@ -31,12 +31,18 @@ public class RegisterPageController {
     @PostMapping("/register")
     public String Register( @RequestParam("account")String account,
                             @RequestParam("password")String password,
-                            @RequestParam("name")String name){
+                            @RequestParam("name")String name,
+                            @RequestParam("email")String email,
+                            @RequestParam("idCard")String idCard,
+                            @RequestParam("telephone")String telephone){
         user user=new user();
         user.setAccount(account);
         user.setName(name);
         user.setPassword(password);
         user.setUserRight(1);
+        user.setEmail(email);
+        user.setIdCard(idCard);
+        user.setTelephone(telephone);
         int check=userService.registerAccount(user);
 
         switch (check){

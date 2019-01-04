@@ -16,6 +16,12 @@ public interface UserMapper {
 
     user getUserByName(String name);
 
+    user getUserByEmail(String email);
+
+    user getUserByIdCard(String idCard);
+
+    user getUserByTelephone(String telephone);
+
     int registerAccount(user user);
 
     int deleteUser(int userId);
